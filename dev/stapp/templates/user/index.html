@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %}
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <h1 style="text-align: center; margin: 25px">Community Management Hub</h1>
+  </div>
+</div>
+<div class="row">
+  <div style="padding: 0px">
+    <img
+      src="{% static 'images/retail.jpg' %}"
+      class="img"
+      alt="Responsive image"
+      style="padding: 0px; margin: 0px; width: 100%; opacity: 0.6"
+    />
+  </div>
+</div>
+<div class="row">
+  <div style="padding: 0px; margin-top: 25px; margin-bottom: 25px">
+    <h4 style="text-align: center">
+      This project is made by Mohamed Bilel Besbes. It is a tool to upload large data volumes through excel and csv, and to filter them through the UI to download them as csv or excel. This project is basically a sample project to make a DevOps project, therefore the development part is not that important.
+    </h4>
+  </div>
+</div>
+<div class="row">
+   <div class="col-12">
+    <h2 style="text-align: start; margin: 20px">What you can do</h2>
+  </div>
+</div>
+<div class="row" style="text-align: center; justify-content: center;">
+    <div class="col-md-3" style="margin: 20px;">
+      <div class="card card-chart" style="border-radius: 30px;">
+        <div class="card-header" width="5px" height="5px" style="text-align:center;border-radius: 40px;"><img src="{% static 'images/upload.png' %}" width="100" height="100" alt="no image"></div>
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">Upload</h5>
+          
+          <p class="card-category" style="width: 260;height: 220;">
+            Upload your big volumes of data in csv or excel format
+          </p> 
+        </div>
+       
+      </div>
+    </div>
+    <div class="col-md-3" style="margin: 20px;">
+      <div class="card card-chart" style="border-radius: 30px;">
+        <div class="card-header" width="5" height="5" style="text-align:center;border-radius: 40px;"><img src="{% static 'images/filter.png' %}" width="100" height="100" alt="no image"></div>
+        <div class="card-body" >
+          <h5 class="card-title" style="text-align: center;">Filter</h5>
+          
+          <p class="card-category" style="width: 260;height: 220;">
+          Filter the data through the UI without trouble
+          </p>   
+        </div>
+       
+      </div>
+    </div>
+    <div class="col-md-3" style="margin: 20px;">
+      <div class="card card-chart" style="border-radius: 30px;">
+        <div class="card-header" width="5" height="5" style="text-align:center;border-radius: 40px;"><img src="{% static 'images/downloading.png' %}" width="100" height="90" alt="no image"></div>
+        <div class="card-body" style="justify-content: center;">
+          <h5 class="card-title" style="text-align: center;">Download</h5>
+          
+          <p class="card-category" style="text-align:center;width: 260;height: 220;">
+            Download the data in excel format for your convenience. Excel is the number one platform when it comes to analyzing data, finding information, preparing charts, and presenting them to decision-makers. Excel performs well for all levels of user
+          </p>
+        </div>
+       
+      </div>
+    </div>
+</div>
+<div class="row" style="margin: 30;"> 
+    <h3 style="color: 1da1f2;">Deeper look</h3>
+    <h2>Conveniently import and export your data</h2>
+</div>
+<div class="row" style="justify-content: center;margin: 30px;">
+<div class="col-md-4" style="margin: 30;margin-bottom: 50;">
+<img style="margin-bottom:50;" src="{% static 'images/data-engineering.png' %}" alt="no image">
+</div>
+<div class="col-md-4" style="margin: 30;">
+<p>This is a scope about data engineering :
+
+
+  Data engineering is important because it allows businesses to optimize data towards usability. For example, data engineering plays a large role in the following pursuits:
+Finding the best practices for refining your software development life cycle,
+Tightening information security and protecting your business from cyberattacks,
+Increasing your understanding of business domain knowledge,
+Bringing data together into one place via data integration tools
+</p>
+</div>
+</div>
+</div>
+{% endblock %}

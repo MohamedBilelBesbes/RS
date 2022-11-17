@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-statefulset
+spec:
+  serviceName: postgres-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-db
+  template:
+    metadata:
+      labels:
+        app: postgres-db
+    spec:
+      volumes:
+      - name: data-mount
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+      containers:
+      - name: postgres
+        image: postgres
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9042
+          name: postgres-port
+        volumeMounts:
+        - name: data-mount
+          mountPath: /var/lib/postgresql/data
+        envFrom:
+        - secretRef:
+            name: postgres-secret
+# volumeClaimTemplates:
+#    - metadata:
+#        name: data
+#      spec:
+#
+#        storageClassName: localstorage
+#        accessModes: ["ReadWriteOnce"]
+#        resources:
+#          requests:
+#            storage: 3Gi

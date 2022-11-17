@@ -1,0 +1,45 @@
+web:
+  web:
+    name: rs-deployment
+    imageName: rs
+    imageTag: helm
+    imagePullPolicy: IfNotPresent
+    replicas: 1
+    secrets:
+      - web-secret
+      - postgres-secret
+      - cassandra-secret
+  service:
+    name: web-service
+    port: 8000
+  ingress:
+    name: web-ingress
+    host: rs.web
+    path: /
+postgresql:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 15.1.0-debian-11-r0
+  global:
+    postgresql:
+      auth:
+        database: "rs"
+        existingSecret: "postgres-secret"
+        secretKeys:
+          adminPasswordKey: "POSTGRES_PASSWORD"
+cassandra:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: bitnami/cassandra
+    tag: 4.0.6-debian-11-r2 # 4.0.7-debian-11-r0
+  dbUser:
+    user: cassandra
+    forcePassword: true
+    password: cassandra
+    # existingSecret:
+    #   name: cassandra-secret
+    #   keyMapping:
+    #     cassandra-password: CASSANDRA_DB_PASSWORD

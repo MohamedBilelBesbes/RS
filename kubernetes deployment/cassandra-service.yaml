@@ -1,0 +1,26 @@
+###
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: cassandra-service
+#spec:
+#  selector:
+#    app: rs
+#  ports:
+#    - port: 9042
+#      targetPort: 9042
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cassandra-service
+  labels:
+    app: rs-cassandra
+spec:
+  ports:
+  - port: 9042
+    targetPort: 9042
+    name: cassandra-port
+  selector:
+    app: cassandra-db

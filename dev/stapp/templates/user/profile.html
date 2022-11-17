@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+<div class="col-8">
+<br>
+    <h2 style="margin-left:50px;">Your coordinates :</h2>
+
+    <div class="col-md-6" style="margin-top:20px;margin-bottom:20px;">
+      <div class="card card-chart" style="border-radius: 30px;">
+        <div class="card-header" style="border-radius: 40px;">Your info, {{user.username}}</div>
+        <div class="card-body">
+          <p class="card-category">
+            Your Username : {{user.username}}
+          </p>
+          <p class="card-category">
+            Your Email : {{user.email}}
+          </p>
+          <div class="row">
+          <div class="col-md-6">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'delete_user' pk=user.username %}" class="btn btn-primary" style="margin-left: 10px; background-color: rgb(100, 100, 100); border-color: rgb(100, 100, 100)" type="submit" id="header-links"> Delete Account </a>
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary" style="margin-left: 10px; background-color: rgb(100, 100, 100); border-color: rgb(100, 100, 100)" type="submit" id="header-links"> Edit Account </a>
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="card-footer" style="border-radius: 30px;">
+          <div class="stats"> Your profile ID is : {{ user.pk }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>
+<div class="col-4">
+<br>
+<br>
+<br>
+<br>
+<img src="{% static 'images/engineer.png' %}" style="margin-left: -140px" class="img-thumbnail" alt="Responsive image">
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

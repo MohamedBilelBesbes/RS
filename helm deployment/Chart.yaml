@@ -1,0 +1,16 @@
+name: rs
+version: v1
+description: A django web application to upload retail data to put them in a database, query the data back through the UI, and get the resulting queried data as a downloaded .csv file. The application is connected with postgress to store the user data and cassandra to store retail data
+maintainers:
+  - name: Bsbs
+    email: bilel.besbes1@gmail.com
+engine: gotpl
+dependencies:
+  - name: cassandra
+    version: "9.1.0"
+    repository: https://charts.bitnami.com/bitnami
+    condition: cassandra.enabled
+  - name: postgresql
+    version: "12.1.2"
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled

@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  cassandra:
+    image: cassandra
+    ports:
+    - "9042:9042"
+    env_file:
+    - web-variables.env
+  postgres:
+    image: postgres
+    env_file:
+    - web-variables.env
+    ports:
+      - "5432:5432"
+  web: 
+    image: rs
+    ports:
+      - "8000:8000"
+    env_file:
+    - web-variables.env
+    depends_on:
+      - postgres
+      - cassandra

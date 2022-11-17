@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <div class="row">
+    <div class="col-8">
+    <div class="container" style="margin-top: 30px;">
+    <form
+  class="form"
+  action="{% url 'pass_request' %}"
+  method="post"
+>
+{% csrf_token %}
+<legend class="border-bottom mb-4" style="color: grey;">Get the data you need</legend>
+<h3>You MUST fill the 'Brand names' and 'item IDs' fields at least</h3>
+<br>
+<div class="form-group">
+    <label class="control-label">Brand Names</label>
+    <input
+      type="text"
+      name="brand_name"
+      id="brand_name"
+      class="form-control"
+      style="background-color: #d0d4f5 !important;width: 60%;margin-left:50px;"
+      placeholder="Brand Names (seperated by a ; ) ..."
+    />
+  </div>
+    <div class="form-group">
+    <label class="control-label">Shop IDs</label>
+    <input
+      type="text"
+      name="shop_id"
+      id="shop_id"
+      class="form-control"
+      style="background-color: #d0d4f5 !important;width: 60%;margin-left:50px;"
+      placeholder="Shop IDs (seperated by a ; ) ..."
+    />
+  </div>
+  <div class="form-group">
+    <label class="control-label">Item IDs</label>
+    <input
+      type="text"
+      name="item_id"
+      id="item_id"
+      class="form-control"
+      style="background-color: #d0d4f5 !important;width: 60%;margin-left:50px;"
+      placeholder="Item IDs (seperated by a ; ) ..."
+    />
+  </div>
+  <div class="form-group">
+    <label class="control-label">Start Date</label>
+    <input
+      type="date"
+      name="start_date"
+      id="start_date"
+      class="form-control"
+      style="background-color: #d0d4f5 !important;width: 60%;margin-left:50px;"
+    />
+  </div>
+  <div class="form-group">
+    <label class="control-label">End Date</label>
+    <input
+      type="date"
+      name="end_date"
+      id="end_date"
+      class="form-control"
+      style="background-color: #d0d4f5 !important;width: 60%;margin-left:50px;"
+    />
+  </div>
+  <button type="submit" style="margin-left: 400px; background-color: rgb(100, 100, 100); border-color: rgb(100, 100, 100)" class="btn btn-primary">Get data</button>
+  </form>
+  </div>
+  </div>
+  </div>
+{% endblock %}

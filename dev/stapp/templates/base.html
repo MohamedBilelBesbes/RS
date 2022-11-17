@@ -1,0 +1,108 @@
+{% load static %}
+<head>
+
+<link rel="stylesheet" href="{% static 'stapp/css/main.css' %}" type="text/css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!--Font Link-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body style="background-color: rgb(250,250,250);">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(100,100,100) !important;">
+  <a class="navbar-brand" href="{% url 'index' %}">RetStat</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a href="{% url 'index' %}" class="btn btn-outline-light" style="color: white;margin-left: 10px;"type="submit" id="header-links"> Main </a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a href="{% url 'edit_profile' %}" class="btn btn-outline-light" style="color: white;margin-left: 10px;"type="submit" id="header-links"> Edit Profile </a>
+      </li>
+    </ul>
+    {% endif %}
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="btn btn-outline-light" style="color: white;margin-left: 10px;"type="submit" id="header-links"> Profile </a>
+        <a href="{% url 'logout' %}" class="btn btn-outline-light" style="color: white; margin-left: 10px;"type="submit" id="header-links"> Logout </a>
+        <a href="{% url 'pass_request' %}" class="btn btn-outline-light" style="color: white;margin-left: 10px;"type="submit" id="header-links"> Download </a>
+        <a href="{% url 'upload' %}" class="btn btn-outline-light" style="color: white; margin-left: 10px;"type="submit" id="header-links"> Upload </a>
+      {% else %}
+        <a href="{% url 'register' %}" class="btn btn-outline-light" style="color: white;margin-left: 10px;"type="submit" id="header-links"> Create Account </a>
+        <a href="{% url 'login' %}" class="btn btn-outline-light" style="color: white; margin-left: 10px; "type="submit" id="header-links">Log In</a>
+      {% endif %}
+  </div>
+</nav>
+<div class="container">
+  {% if messages %}
+  <br>
+  <br>
+    {% for message in messages %}
+      <div class="alert alert-{{message.tags}}">{{message}}</div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% block content %}{% endblock %}
+</body>
+<footer class="bg-primary text-white text-center text-lg-start" style="background-color: rgb(100,100,100) !important; position:relative;
+   bottom:0;width:100%">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Project Description</h5>
+
+        <p>
+          This project is made by Mohamed Bilel Besbes. It is a tool to upload large data volumes through excel and csv, and to filter them through the UI to download them as csv or excel. This project is basically a sample project to make a DevOps project, therefore the development part is not that important.
+        </p>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">General</h5>
+
+        <ul class="list-unstyled mb-0">
+          <li>
+            <a href="{% url 'index' %}" class="text-white">Main Page</a>
+          </li>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase mb-0">Main Page</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'index' %}" class="text-white">Main Page</a>
+            <a href="{% url 'pass_request' %}" class="text-white">Download</a>
+            <a href="{% url 'upload' %}" class="text-white">Upload</a>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Done By
+    <a class="text-white" href="https://www.linkedin.com/in/mohamed-bilel-besbes-31244a168/">Mohamed Bilel Besbes</a>
+  </div>
+  <!-- Copyright -->
+</footer>

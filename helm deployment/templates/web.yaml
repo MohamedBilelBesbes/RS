@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.web.web.name }}
+  labels:
+    app: rs
+spec:
+  replicas: {{ .Values.web.web.replicas }}
+  selector:
+    matchLabels:
+      app: rs
+  template:
+    metadata:
+      labels:
+        app: rs
+    spec:
+      containers:
+      - name: rs-pod
+        image: {{ .Values.web.web.imageName }}:{{ .Values.web.web.imageTag }}
+        envFrom:
+        {{- range $secret := .Values.web.web.secrets }}
+        - secretRef:
+            name: {{ $secret }}
+        {{- end }}
+        imagePullPolicy: {{ .Values.web.web.imagePullPolicy }}
+        ports:
+        - containerPort: 8000

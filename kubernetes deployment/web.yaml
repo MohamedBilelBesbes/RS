@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rs-deployment
+  labels:
+    app: rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rs
+  template:
+    metadata:
+      labels:
+        app: rs
+    spec:
+      containers:
+      - name: rs-pod
+        image: rs:latest
+        envFrom:
+        - secretRef:
+            name: web-secret
+        - secretRef:
+            name: postgres-secret
+        - secretRef:
+            name: cassandra-secret
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000

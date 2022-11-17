@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<br><br><br>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+      <form enctype = "multipart/form-data" action={% url 'upload' %} method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+      </form>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
