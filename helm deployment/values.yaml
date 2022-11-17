@@ -38,8 +38,7 @@ cassandra:
   dbUser:
     user: cassandra
     forcePassword: true
-    password: cassandra
-    # existingSecret:
-    #   name: cassandra-secret
-    #   keyMapping:
-    #     cassandra-password: CASSANDRA_DB_PASSWORD
+    existingSecret:
+      name: cassandra-secret
+      keyMapping:
+        cassandra-password: CASSANDRA_DB_PASSWORD
